@@ -4,6 +4,7 @@ import 'package:masquerade_page/util/custom_text_style.dart';
 import 'package:masquerade_page/vistas/appbar.dart';
 import 'package:masquerade_page/widgets/custom_background_scaffold.dart';
 import 'package:masquerade_page/widgets/custom_row_pick.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -18,6 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
         body: Center(
       child: ListView(
@@ -80,14 +82,55 @@ class _MyHomePageState extends State<MyHomePage> {
             imageBackground: "assets/images/BellBkgnd.png",
             myChild: Center(
                 child: Column(children: <Widget>[
+              const SizedBox(
+                height: 80,
+              ),
               generarTextoPersonalizado(
                   myText: "Tráiler", textStyle: CustomTextStyles.subtitle),
             ])),
           ),
           BaseLayout(
             imageBackground: "assets/images/TownBkgnd.png",
-            myChild: Column(children: const <Widget>[]),
+            myChild: Column(children: <Widget>[
+              const SizedBox(
+                height: 40,
+              ),
+              generarTextoPersonalizado(
+                  myText: "Features", textStyle: CustomTextStyles.subtitle),
+            ]),
           ),
+          BaseLayout(
+              imageBackground: "assets/images/finalImageCaronte.png",
+              myChild: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const Spacer(
+                    flex: 7,
+                  ),
+                  Column(
+                    children: <Widget>[
+                      const Spacer(flex: 1),
+                      generarTextoPersonalizado(
+                          myText:
+                              "Atrévete a conocer \nLiberio y resuelve \ntodos sus miserios.",
+                          textStyle: CustomTextStyles.resume),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      generarTextoPersonalizado(
+                          myText: 'Sólo aquí, en',
+                          textStyle: CustomTextStyles.resume),
+                      generarTextoPersonalizado(
+                          myText: 'Masquerade',
+                          textStyle: CustomTextStyles.title),
+                      const Spacer(flex: 4),
+                    ],
+                  ),
+                  const Spacer(
+                    flex: 1,
+                  ),
+                ],
+              )),
         ],
       ),
     ));

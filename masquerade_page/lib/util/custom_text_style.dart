@@ -23,6 +23,9 @@ class CustomTextStyles {
   static const TextStyle titleAppBar = TextStyle(
       fontSize: 70, fontFamily: 'CinzelBlack', color: CustomColors.white);
 
+  static const TextStyle title = TextStyle(
+      fontSize: 60, fontFamily: 'CinzelBold', color: CustomColors.white);
+
   static const TextStyle buttonText = TextStyle(
       fontSize: 26, fontFamily: 'CinzelBold', color: CustomColors.white);
 
@@ -31,7 +34,11 @@ class CustomTextStyles {
       fontFamily: 'CinzelBlack',
       color: CustomColors.white,
       decoration: TextDecoration.underline);
-
+  static const TextStyle resume = TextStyle(
+      fontSize: 46, fontFamily: 'CinzelBold', color: CustomColors.white);
   static const TextStyle content = TextStyle(
-      fontSize: 20, fontFamily: 'CinzelRegular', color: CustomColors.white);
+      fontSize: 20, fontFamily: 'Trascend', color: CustomColors.white);
+
+  static const TextStyle teamMembers = TextStyle(
+      fontSize: 18, fontFamily: 'CinzelRegular', color: CustomColors.white);
 }

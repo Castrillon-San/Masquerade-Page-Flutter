@@ -7,7 +7,7 @@ class CustomAppBar extends StatelessWidget {
 
   Text customText(String txt) {
     return Text(txt,
-        style: TextStyle(
+        style: const TextStyle(
           color: CustomColors.black,
           fontSize: 15,
           fontWeight: FontWeight.w300,
@@ -29,7 +29,7 @@ class CustomAppBar extends StatelessWidget {
               width: 100,
             ),
             const Spacer(flex: 5),
-            Text("Masquerade", style: CustomTextStyles.titleAppBar),
+            const Text("Masquerade", style: CustomTextStyles.titleAppBar),
             const Spacer(flex: 7),
           ],
         ),
