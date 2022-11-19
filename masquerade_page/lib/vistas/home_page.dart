@@ -27,15 +27,29 @@ class _MyHomePageState extends State<MyHomePage> {
             height: size.height,
             width: size.width,
             decoration: const BoxDecoration(
+              //No funcionan las sombras por dentro xd
+              boxShadow: [
+                BoxShadow(
+                  color: CustomColors.black,
+                  spreadRadius: -100.100,
+                  blurRadius: 12.0,
+                )
+              ],
               image: DecorationImage(
                 image: AssetImage("assets/images/CaronteBkgnd.png"),
                 fit: BoxFit.cover,
               ),
             ),
-            child: Column(children: <Widget>[
+            child: Column(children: const <Widget>[
               CustomAppBar(),
             ]),
           ),
+          BaseLayout(
+            imageBackground: "assets/images/TownBkgnd.png",
+            myChild: Column(children: const <Widget>[]),
+          )
+          //child: Column(),
+          //),
         ],
       ),
     ));

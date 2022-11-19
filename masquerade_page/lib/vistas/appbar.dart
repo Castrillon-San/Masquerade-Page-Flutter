@@ -18,13 +18,16 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 100,
+      height: 150,
       child: ColoredBox(
         color: CustomColors.black,
         child: Row(
           children: [
             const Spacer(flex: 1),
-            Image.asset('assets/images/LogoHiRes.png'),
+            Image.asset(
+              'assets/images/LogoHiRes.png',
+              width: 100,
+            ),
             const Spacer(flex: 5),
             Text("Masquerade", style: CustomTextStyles.titleAppBar),
             const Spacer(flex: 7),
