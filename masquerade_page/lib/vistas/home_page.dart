@@ -8,6 +8,11 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:bulleted_list/bulleted_list.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:masquerade_page/widgets/category_model.dart';
+import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+final Uri _url = Uri.parse(
+    'https://drive.google.com/file/d/1qW5tZvKySIfbivBJxzWrWqSlLeVDt9NA/view?usp=sharing');
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -46,8 +51,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 fit: BoxFit.cover,
               ),
             ),
-            child: Column(children: const <Widget>[
-              CustomAppBar(),
+            child: Column(children: <Widget>[
+              const CustomAppBar(),
+              const Spacer(
+                flex: 2,
+              ),
+              CustomElevation(
+                child: ElevatedButton(
+                  onPressed: _launchUrl,
+                  style: ElevatedButton.styleFrom(
+                      elevation: 12.0,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                      ),
+                      shadowColor: Color.fromARGB(255, 255, 255, 255),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40.0, vertical: 40.0),
+                      textStyle: CustomTextStyles.buttonText,
+                      primary: Colors.pink),
+                  child: const Text('Descárgalo Ya'),
+                ),
+              ),
+              const Spacer()
             ]),
           ),
           BaseLayout(
@@ -188,6 +213,37 @@ class _MyHomePageState extends State<MyHomePage> {
 Widget generarTextoPersonalizado(
     {required String myText, required TextStyle textStyle}) {
   return Text(myText, style: textStyle);
+}
+
+_launchUrl() async {
+  if (await canLaunchUrl(_url)) {
+    await launchUrl(_url);
+  } else {
+    throw "could not load";
+  }
+}
+
+class CustomElevation extends StatelessWidget {
+  final Widget child;
+
+  CustomElevation({required this.child}) : assert(child != null);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(50.0)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Color(0xADACAC).withOpacity(0.1),
+            blurRadius: 1,
+            offset: Offset(0, 10),
+          ),
+        ],
+      ),
+      child: this.child,
+    );
+  }
 }
 
 class HeroCarouselCard extends StatelessWidget {
