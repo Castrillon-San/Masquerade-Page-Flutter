@@ -16,102 +16,28 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-  // Widget textoPersonalizado(String texto){
-  //     return Text(
-  //       texto,
-  //       style: const Text(widget.title)
-  //         color: CustomColor.beige,
-  //     ),
-  //     );
-  //     }
-  // }
-
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-        body: Stack(
-      children: <Widget>[
-        Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/CaronteBkgnd.png"),
-              fit: BoxFit.cover,
+        body: Center(
+      child: ListView(
+        children: <Widget>[
+          Container(
+            height: size.height,
+            width: size.width,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/CaronteBkgnd.png"),
+                fit: BoxFit.cover,
+              ),
             ),
+            child: Column(children: <Widget>[
+              CustomAppBar(),
+            ]),
           ),
-        ),
-        ListView(
-          children: <Widget>[
-            const CustomAppBar(),
-          ],
-        ),
-        const Center(
-          child: TextButton(
-            onPressed: null,
-            child: Text(
-              "Descárgalo ya",
-              style: TextStyle(
-                  fontSize: 26,
-                  fontFamily: 'CinzelBold',
-                  color: Color(0xC0316F)),
-            ),
-          ),
-        ),
-        // Container(
-        //   decoration: const BoxDecoration(
-        //     image: DecorationImage(
-        //       image: AssetImage("assets/images/CaronteBkgnd.png"),
-        //       fit: BoxFit.cover,
-        //     ),
-        //   ),
-        // ),
-      ],
+        ],
+      ),
     ));
-    // child: ListView(
-    //   children: <Widget>[
-    //     const CustomAppBar(),
-    //     const SizedBox(
-    //       height: 100,
-    //     ),
-    //     Row(
-    //       children: [
-    //         const Spacer(),
-    //         Text(
-    //           "Steak & \nRibs",
-    //           style: CustomTextStyles.headingGigant,
-    //         ),
-    //         const Spacer(),
-    //         Image.asset(
-    //           'assets/images/IMG_4093.PNG',
-    //           scale: 8,
-    //         ),
-    //         Image.network(
-    //           "https://www.kansascitysteaks.com/images/www/how-to-cook/filet-mignon/doneness.png",
-    //           scale: 3,
-    //         ),
-    //         const Spacer(
-    //           flex: 3,
-    //         ),
-    //       ],
-    //     ),
-    //     const WidgetRowPage(),
-    //     BaseLayout(
-    //         imageBackground: Image.network(
-    //             "https://www.kansascitysteaks.com/images/www/how-to-cook/filet-mignon/doneness.png")),
-    //   ],
-    // ),
-    //   ),
-    //   floatingActionButton: FloatingActionButton(
-    //     onPressed: _incrementCounter,
-    //     tooltip: 'Increment',
-    //     child: const Icon(Icons.add),
-    //   ),
-    // );
   }
 }
