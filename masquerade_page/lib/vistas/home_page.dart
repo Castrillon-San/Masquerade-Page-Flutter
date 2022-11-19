@@ -80,22 +80,33 @@ class _MyHomePageState extends State<MyHomePage> {
             myChild: Center(
               child: Row(children: <Widget>[
                 const Spacer(flex: 1),
-                Column(
-                  children: [
-                    const SizedBox(
-                      height: 200,
-                    ),
-                    generarTextoPersonalizado(
-                        myText: "Sinópsis",
-                        textStyle: CustomTextStyles.subtitle),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    generarTextoPersonalizado(
-                        myText:
-                            "Lo despierta en un tren sin recuerdo alguno \nsobre quien es, en su rostro una máscara que no \nse puede quitar. El conductor del tren, Caronte, \nlo lleva a un lugar con la promesa de que allá \npuede encontrar quien es. \n\nLo se dedica a explorar el pueblo de Liberio en \nbusca de respuestas; extrañamente toda persona \ncon la que se encuentra tiene también una \nmáscara y aparentan estar sumamente desorientados. \nTras pasar su primer día, Lo se da cuenta que \naquellas personas olvidan con el paso de la \nnoche todo lo que había sucedido el día anterior, y \nes aquí donde comenzará su travesía en \ndescubrir la oscura realidad detrás de este \nmisterioso pueblo.",
-                        textStyle: CustomTextStyles.content)
-                  ],
+                Container(
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(74, 255, 255, 255),
+                      border: Border.all(
+                          color: const Color.fromARGB(74, 255, 255, 255)),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(20))),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 40.0, vertical: 40.0),
+                  height: 700,
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 100,
+                      ),
+                      generarTextoPersonalizado(
+                          myText: "Sinópsis",
+                          textStyle: CustomTextStyles.subtitle),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      generarTextoPersonalizado(
+                          myText:
+                              "Lo despierta en un tren sin recuerdo alguno \nsobre quien es, en su rostro una máscara que no \nse puede quitar. El conductor del tren, Caronte, \nlo lleva a un lugar con la promesa de que allá \npuede encontrar quien es. \n\nLo se dedica a explorar el pueblo de Liberio en \nbusca de respuestas; extrañamente toda persona \ncon la que se encuentra tiene también una \nmáscara y aparentan estar sumamente desorientados. \nTras pasar su primer día, Lo se da cuenta que \naquellas personas olvidan con el paso de la \nnoche todo lo que había sucedido el día anterior, y \nes aquí donde comenzará su travesía en \ndescubrir la oscura realidad detrás de este \nmisterioso pueblo.",
+                          textStyle: CustomTextStyles.content)
+                    ],
+                  ),
                 ),
                 const Spacer(flex: 2),
                 Image.asset(
