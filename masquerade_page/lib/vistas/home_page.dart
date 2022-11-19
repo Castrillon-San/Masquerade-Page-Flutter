@@ -5,6 +5,9 @@ import 'package:masquerade_page/vistas/appbar.dart';
 import 'package:masquerade_page/widgets/custom_background_scaffold.dart';
 import 'package:masquerade_page/widgets/custom_row_pick.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:bulleted_list/bulleted_list.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:masquerade_page/widgets/category_model.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -32,9 +35,10 @@ class _MyHomePageState extends State<MyHomePage> {
               boxShadow: [
                 BoxShadow(
                   color: CustomColors.black,
-                  offset: Offset(-100, -100),
+                  offset: Offset(100, 100),
                   spreadRadius: -10.0,
                   blurRadius: 12.0,
+                  blurStyle: BlurStyle.inner,
                 )
               ],
               image: DecorationImage(
@@ -54,13 +58,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 Column(
                   children: [
                     const SizedBox(
-                      height: 100,
+                      height: 200,
                     ),
                     generarTextoPersonalizado(
                         myText: "Sinópsis",
                         textStyle: CustomTextStyles.subtitle),
                     const SizedBox(
-                      height: 20,
+                      height: 40,
                     ),
                     generarTextoPersonalizado(
                         myText:
@@ -90,14 +94,31 @@ class _MyHomePageState extends State<MyHomePage> {
             ])),
           ),
           BaseLayout(
-            imageBackground: "assets/images/TownBkgnd.png",
-            myChild: Column(children: <Widget>[
-              const SizedBox(
-                height: 40,
-              ),
-              generarTextoPersonalizado(
-                  myText: "Features", textStyle: CustomTextStyles.subtitle),
-            ]),
+            imageBackground: "assets/images/Bakery.png",
+            myChild: Column(
+              children: <Widget>[
+                const SizedBox(
+                  height: 40,
+                ),
+                generarTextoPersonalizado(
+                    myText: "Features", textStyle: CustomTextStyles.subtitle),
+                const SizedBox(
+                  height: 40,
+                ),
+                CarouselSlider(
+                  options: CarouselOptions(
+                    height: 600,
+                    aspectRatio: 1.0,
+                    enlargeCenterPage: true,
+                    enableInfiniteScroll: false,
+                    autoPlay: true,
+                  ),
+                  items: Category.categories
+                      .map((category) => HeroCarouselCard(category: category))
+                      .toList(),
+                ),
+              ],
+            ),
           ),
           BaseLayout(
               imageBackground: "assets/images/finalImageCaronte.png",
@@ -131,6 +152,33 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               )),
+
+          BaseLayout(
+            imageBackground: "assets/images/TeamMembers.png",
+            myChild: Column(
+              children: [
+                const SizedBox(height: 40),
+                generarTextoPersonalizado(
+                    myText: "Equipo de Desarrollo",
+                    textStyle: CustomTextStyles.subtitle),
+                const BulletedList(
+                  bulletColor: CustomColors.white,
+                  listItems: [
+                    "Santiago Castrillón",
+                    "Laura Molina",
+                    "Valentina Gil",
+                    "Samuel F. Rodriguez",
+                    "Mariana Cano",
+                    "Jordan Bolívar",
+                    "Yefri Avella",
+                    "Alejandro Serna"
+                  ],
+                  listOrder: ListOrder.ordered,
+                  style: CustomTextStyles.teamMembers,
+                )
+              ],
+            ),
+          ),
         ],
       ),
     ));
@@ -140,4 +188,49 @@ class _MyHomePageState extends State<MyHomePage> {
 Widget generarTextoPersonalizado(
     {required String myText, required TextStyle textStyle}) {
   return Text(myText, style: textStyle);
+}
+
+class HeroCarouselCard extends StatelessWidget {
+  final Category category;
+
+  const HeroCarouselCard({
+    required this.category,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 20),
+      child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+          child: Stack(
+            children: <Widget>[
+              Image.asset(category.imagePath, fit: BoxFit.cover, width: 1000.0),
+              Positioned(
+                bottom: 0.0,
+                left: 0.0,
+                right: 0.0,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromARGB(200, 0, 0, 0),
+                        Color.fromARGB(0, 0, 0, 0)
+                      ],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                    ),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 20.0),
+                  child: Text(
+                    category.name,
+                    style: CustomTextStyles.cardText,
+                  ),
+                ),
+              ),
+            ],
+          )),
+    );
+  }
 }
