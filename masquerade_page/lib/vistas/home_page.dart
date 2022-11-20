@@ -198,11 +198,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Column(
                     children: <Widget>[
-                      const Spacer(flex: 1),
+                      const Spacer(flex: 2),
                       generarTextoPersonalizado(
                           myText:
                               "Atrévete a conocer \nLiberio y resuelve \ntodos sus miserios.",
                           textStyle: CustomTextStyles.resume),
+                      const Spacer(flex: 1),
                       const SizedBox(
                         height: 40,
                       ),
@@ -212,7 +213,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       generarTextoPersonalizado(
                           myText: 'Masquerade',
                           textStyle: CustomTextStyles.title),
-                      const Spacer(flex: 4),
+                      const Spacer(flex: 3),
                     ],
                   ),
                   const Spacer(
@@ -225,25 +226,40 @@ class _MyHomePageState extends State<MyHomePage> {
             imageBackground: "assets/images/TeamMembers.png",
             myChild: Column(
               children: [
-                const SizedBox(height: 40),
-                generarTextoPersonalizado(
-                    myText: "Equipo de Desarrollo",
-                    textStyle: CustomTextStyles.subtitle),
-                const BulletedList(
-                  bulletColor: CustomColors.white,
-                  listItems: [
-                    "Santiago Castrillón",
-                    "Laura Molina",
-                    "Valentina Gil",
-                    "Samuel F. Rodriguez",
-                    "Mariana Cano",
-                    "Jordan Bolívar",
-                    "Yefri Avella",
-                    "Alejandro Serna"
+                const SizedBox(height: 80),
+                Row(
+                  children: [
+                    //esto no es responsive pero honestly nada en este codigo lo es
+                    //so...
+                    const Spacer(
+                      flex: 2,
+                    ),
+                    generarTextoPersonalizado(
+                        myText: "Equipo de\nDesarrollo",
+                        textStyle: CustomTextStyles.resume),
+                    const SizedBox(width: 1100),
                   ],
-                  listOrder: ListOrder.ordered,
-                  style: CustomTextStyles.teamMembers,
-                )
+                ),
+                const Spacer(),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                  child: const BulletedList(
+                    bulletColor: CustomColors.white,
+                    listItems: [
+                      "Santiago Castrillón",
+                      "Laura Molina",
+                      "Valentina Gil",
+                      "Samuel F. Rodriguez",
+                      "Mariana Cano",
+                      "Jordan Bolívar",
+                      "Yefri Avella",
+                      "Alejandro Serna"
+                    ],
+                    listOrder: ListOrder.ordered,
+                    style: CustomTextStyles.teamMembers,
+                  ),
+                ),
+                const Spacer(flex: 2),
               ],
             ),
           ),
