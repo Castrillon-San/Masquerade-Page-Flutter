@@ -251,8 +251,31 @@ class _MyHomePageState extends State<MyHomePage> {
             decoration: const BoxDecoration(
               color: Color.fromARGB(255, 0, 0, 0),
             ),
-            height: 200,
-            child: Column(children: <Widget>[]),
+            height: 170,
+            child: Row(children: <Widget>[
+              const Spacer(flex: 1),
+              generarTextoPersonalizado(
+                  myText: "Página desarrollada por: ",
+                  textStyle: CustomTextStyles.teamMembers),
+              const Spacer(flex: 1),
+              Column(
+                children: [
+                  const Spacer(flex: 2),
+                  generarTextoPersonalizado(
+                      myText: "Santiago Castrillón",
+                      textStyle: CustomTextStyles.teamMembers),
+                  generarTextoPersonalizado(
+                      myText: "Laura Molina ",
+                      textStyle: CustomTextStyles.teamMembers),
+                  const Spacer(flex: 2),
+                ],
+              ),
+              const Spacer(flex: 3),
+              generarTextoPersonalizado(
+                  myText: "Todos los derechos de autor reservados ",
+                  textStyle: CustomTextStyles.teamMembers),
+              const Spacer(flex: 1),
+            ]),
           )
         ],
       ),
