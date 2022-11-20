@@ -4,15 +4,16 @@ import 'package:masquerade_page/util/custom_text_style.dart';
 import 'package:masquerade_page/vistas/appbar.dart';
 import 'package:masquerade_page/widgets/custom_background_scaffold.dart';
 import 'package:masquerade_page/widgets/custom_row_pick.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:bulleted_list/bulleted_list.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:masquerade_page/widgets/category_model.dart';
-import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:pod_player/pod_player.dart';
 
 final Uri _url = Uri.parse(
     'https://drive.google.com/file/d/1qW5tZvKySIfbivBJxzWrWqSlLeVDt9NA/view?usp=sharing');
+
+final Uri Trailer = Uri.parse('https://www.youtube.com/watch?v=7ffrsMKhvPw');
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -127,6 +128,37 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               generarTextoPersonalizado(
                   myText: "Tráiler", textStyle: CustomTextStyles.subtitle),
+              const Spacer(flex: 1),
+              Container(
+                decoration: BoxDecoration(
+                    color: const Color.fromARGB(74, 255, 255, 255),
+                    border: Border.all(
+                        width: 5, color: Color.fromARGB(255, 0, 0, 0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(20))),
+                height: 400,
+                child: Image.asset(
+                  'assets/images/Conoce.png',
+                  fit: BoxFit.fill,
+                ),
+              ),
+              const Spacer(flex: 1),
+              CustomElevation(
+                child: ElevatedButton(
+                  onPressed: _launchTrailer,
+                  style: ElevatedButton.styleFrom(
+                      elevation: 12.0,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                      ),
+                      shadowColor: Color.fromARGB(255, 255, 255, 255),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40.0, vertical: 40.0),
+                      textStyle: CustomTextStyles.buttonText,
+                      primary: Colors.pink),
+                  child: const Text('Ver Tráiler'),
+                ),
+              ),
+              const Spacer(flex: 1),
             ])),
           ),
           BaseLayout(
@@ -215,6 +247,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
+          Container(
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 0, 0, 0),
+            ),
+            height: 200,
+            child: Column(children: <Widget>[]),
+          )
         ],
       ),
     ));
@@ -226,9 +265,50 @@ Widget generarTextoPersonalizado(
   return Text(myText, style: textStyle);
 }
 
+class PlayVideoFromYoutube extends StatefulWidget {
+  const PlayVideoFromYoutube({Key? key}) : super(key: key);
+
+  @override
+  State<PlayVideoFromYoutube> createState() => _PlayVideoFromYoutubeState();
+}
+
+class _PlayVideoFromYoutubeState extends State<PlayVideoFromYoutube> {
+  late final PodPlayerController controller;
+
+  @override
+  void initState() {
+    controller = PodPlayerController(
+      playVideoFrom:
+          PlayVideoFrom.youtube('https://www.youtube.com/watch?v=7ffrsMKhvPw'),
+    )..initialise();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: PodVideoPlayer(controller: controller),
+    );
+  }
+}
+
 _launchUrl() async {
   if (await canLaunchUrl(_url)) {
     await launchUrl(_url);
+  } else {
+    throw "could not load";
+  }
+}
+
+_launchTrailer() async {
+  if (await canLaunchUrl(Trailer)) {
+    await launchUrl(Trailer);
   } else {
     throw "could not load";
   }
