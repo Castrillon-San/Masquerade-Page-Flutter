@@ -8,7 +8,6 @@ import 'package:bulleted_list/bulleted_list.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:masquerade_page/widgets/category_model.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:pod_player/pod_player.dart';
 
 final Uri _url = Uri.parse(
     'https://drive.google.com/file/d/1qW5tZvKySIfbivBJxzWrWqSlLeVDt9NA/view?usp=sharing');
@@ -302,39 +301,6 @@ class _MyHomePageState extends State<MyHomePage> {
 Widget generarTextoPersonalizado(
     {required String myText, required TextStyle textStyle}) {
   return Text(myText, style: textStyle);
-}
-
-class PlayVideoFromYoutube extends StatefulWidget {
-  const PlayVideoFromYoutube({Key? key}) : super(key: key);
-
-  @override
-  State<PlayVideoFromYoutube> createState() => _PlayVideoFromYoutubeState();
-}
-
-class _PlayVideoFromYoutubeState extends State<PlayVideoFromYoutube> {
-  late final PodPlayerController controller;
-
-  @override
-  void initState() {
-    controller = PodPlayerController(
-      playVideoFrom:
-          PlayVideoFrom.youtube('https://www.youtube.com/watch?v=7ffrsMKhvPw'),
-    )..initialise();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: PodVideoPlayer(controller: controller),
-    );
-  }
 }
 
 _launchUrl() async {
