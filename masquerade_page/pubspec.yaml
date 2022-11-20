@@ -29,9 +29,11 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  pod_player: ^0.1.0
+  url_launcher: ^6.1.6
+  youtube_player_flutter: ^8.1.1
   flutter:
     sdk: flutter
-
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -40,11 +42,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  youtube_player_flutter: ^8.1.1
   bulleted_list: ^0.0.1+0.1a
   carousel_slider: ^4.1.1
   equatable: ^2.0.0
-
+  
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -78,6 +79,7 @@ flutter:
    - assets/images/Patris.png
    - assets/images/Bakery.png
    - assets/images/Diary.png
+   - assets/images/Conoce.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
